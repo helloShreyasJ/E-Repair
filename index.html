@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="E-Repair - The Ireland's first Online Repair Shop">
+    <meta name="keywords" content="E-Repair, Online Repair, Ireland, Phone Repair, DIY Repair">
+    <meta name="author" content="E-Repair">
+    <title>E-Repair</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
+    <link rel="stylesheet" href="styleMain.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">E-Repair</div>
+            <button class="burger-menu" aria-label="Toggle navigation">☰</button>
+            <ul class="nav-list">
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="#why-us">Why us</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>E-Repair</h1>
+                <p>The Ireland’s first Online Repair Shop</p>
+                <a href="order.html" class="cta-btn">Get Started<span>It’s Easy</span></a>
+            </div>
+        </section>
+
+        <section id="how-it-works" aria-label="How it works">
+            <h2>How It Works</h2>
+            <div class="content-wrapper">
+                <p>You will pick a part and install by yourself with help of our qualified TechSupport</p>
+            </div>
+        </section>
+
+        <section id="why-us" aria-label="Why choose us">
+            <h2>Why Choose Us</h2>
+            <div class="content-wrapper">
+                <p>We are only one Irish company that allows you to fix you device and get unforgetable emotions at the same time!</p>
+            </div>
+        </section>
+
+        <section id="reviews" aria-label="Customer reviews">
+            <h2>Customer Reviews</h2>
+            <!-- Add content here -->
+        </section>
+    </main>
+
+    <footer id="footer" id="Contact">
+        <p>Contact Us</p>
+        <p><a href="mailto:komlyk7@icloud.com">komlyk7@icloud.com</a></p>
+        <p><a href="tel:+33887701998">+33887701998</a></p>
+    </footer>
+
+    <script>
+         // Обновленный скрипт с улучшенной обработкой
+        const burgerMenu = document.querySelector('.burger-menu');
+        const navList = document.querySelector('.nav-list');
+        const body = document.body;
+
+        // Анимация меню
+        function toggleMenu(e) {
+            e.stopPropagation();
+            const isActive = !navList.classList.contains('active');
+            
+            // Анимация бургера
+            burgerMenu.classList.toggle('active', isActive);
+            navList.classList.toggle('active', isActive);
+            body.style.overflow = isActive ? 'hidden' : 'auto';
+            
+            // Для скринридеров
+            burgerMenu.setAttribute('aria-expanded', isActive);
+        }
+
+        // Закрытие при клике вне меню
+        function closeMenu(e) {
+            if (!e.target.closest('nav') && navList.classList.contains('active')) {
+                toggleMenu(e);
+            }
+        }
+
+        // Обработчики
+        burgerMenu.addEventListener('click', toggleMenu);
+        burgerMenu.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            toggleMenu(e);
+        }, {passive: false});
+
+        document.addEventListener('click', closeMenu);
+        document.addEventListener('touchstart', closeMenu);
+
+        // Плавный скролл с закрытием меню
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    toggleMenu(e);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
